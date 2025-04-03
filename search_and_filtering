@@ -1,0 +1,84 @@
+SEARCH AND FILTERING
+
+#find orders where status is 'Pending'
+
+mydatabase> db.Orders.find({status:'pending'})
+[
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1416'),
+    o_id: 4012,
+    u_id: 101,
+    p_id: 1014,
+    qty: 1,
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1418'),
+    o_id: 4014,
+    u_id: 105,
+    p_id: 1015,
+    qty: 1,
+    status: 'pending'
+  }
+]
+
+#find product with price greater than 600
+
+mydatabase> db.Products.find({price:{$gt:600}})
+[
+  {
+    _id: ObjectId('67ee0d8fe7438d92d76b1410'),
+    p_id: 1011,
+    name: 'keyboard',
+    price: 900,
+    category: 'computer accesories',
+    stock: 'in'
+  }
+]
+
+#find product with price greater than 100
+
+mydatabase> db.Products.find({price:{$gt:100}})
+[
+  {
+    _id: ObjectId('67ee0d8fe7438d92d76b1410'),
+    p_id: 1011,
+    name: 'keyboard',
+    price: 900,
+    category: 'computer accesories',
+    stock: 'in'
+  },
+  {
+    _id: ObjectId('67ee0d8fe7438d92d76b1413'),
+    p_id: 1014,
+    name: 'bottle',
+    price: 250,
+    category: 'kitchen',
+    stock: 'in'
+  },
+  {
+    _id: ObjectId('67ee0d8fe7438d92d76b1414'),
+    p_id: 1015,
+    name: 'charger',
+    price: 150,
+    category: 'electronic appliances',
+    stock: 'in'
+  }
+]
+
+#find users whose name starts with "A"
+mydatabase> db.Users.find({name:{$regex:/^a/}})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    u_id: 105,
+    name: 'aalya',
+    city: 'chennai'
+  }
+]
