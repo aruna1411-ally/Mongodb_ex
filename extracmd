@@ -1,0 +1,215 @@
+#to display specific column alone
+
+mydatabase> db.Users.find({},{name:1,city:1})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    name: 'akshara',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    name: 'parvathy',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    name: 'janani',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'aalya',
+    city: 'chennai'
+  }
+]
+
+mydatabase> db.Users.find({},{name:1,u_id:1})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    u_id: 105,
+    name: 'aalya'
+  }
+]
+
+#to add the attribute age in Users collections
+
+mydatabase> db.Users.updateMany({},{$set:{age:17}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+mydatabase> db.User.find()
+
+mydatabase> db.Users.find()
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 17
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 17
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 17
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    u_id: 105,
+    name: 'aalya',
+    city: 'chennai',
+    age: 17
+  }
+]
+## Update multiple documents (increase age by 1 for all users)
+
+##NOTE: inc or set add a attribute 
+
+mydatabase> db.Users.updateMany({}, { $inc: { age: 1 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+mydatabase> db.Users.find()
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    u_id: 105,
+    name: 'aalya',
+    city: 'chennai',
+    age: 18
+  }
+]
+
+# Replace an entire document
+
+mydatabase> db.Users.replaceOne({ name: "aalya" }, { name: "aalya", age: 19, city: "Berlin" })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydatabase> db.Users.find()
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'aalya',
+    age: 19,
+    city: 'Berlin'
+  }
+]
+mydatabase> db.Users.replaceOne({ name: "aalya" }, { name: "anvika", age: 19, city: "Berlin" })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydatabase> db.Users.find()
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'anvika',
+    age: 19,
+    city: 'Berlin'
+  }
+]
