@@ -213,3 +213,146 @@ mydatabase> db.Users.find()
     city: 'Berlin'
   }
 ]
+# find age between 17 and 19
+
+mydatabase> db.Users.find({age:{$gte:17,$lte:19}})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'anvika',
+    age: 19,
+    city: 'Berlin'
+  }
+]
+
+
+# Find users whose name is either "akshara" or "anvika"
+mydatabase> db.Users.find({name:{$in:['anvika','akshara']}})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'anvika',
+    age: 19,
+    city: 'Berlin'
+  }
+]
+
+# Find users whose name is not 'akshara'
+mydatabase> db.Users.find({name:{$ne:'akshara'}})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'anvika',
+    age: 19,
+    city: 'Berlin'
+  }
+]
+
+# check whether city is there or not 
+mydatabase> db.Users.find({city:{$exists:true}})
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    name: 'anvika',
+    age: 19,
+    city: 'Berlin'
+  }
+]
+
+# find the the city name with 'ai'
+mydatabase> db.Users.find({ city: { $regex: "ai", $options: "i" } })
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai',
+    age: 18
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai',
+    age: 18
+  }
+]
+
+
+
+
+
+
+
+
+
