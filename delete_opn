@@ -1,0 +1,66 @@
+mydatabase> db.Orders.deleteOne({u_id:101})
+{ acknowledged: true, deletedCount: 1 }
+mydatabase> db.Orders.find()
+[
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1416'),
+    o_id: 4012,
+    u_id: 101,
+    p_id: 1014,
+    qty: 1,
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1417'),
+    o_id: 4013,
+    u_id: 103,
+    p_id: 1012,
+    qty: 10,
+    status: 'Delivered'
+  },
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1418'),
+    o_id: 4014,
+    u_id: 105,
+    p_id: 1015,
+    qty: 1,
+    status: 'pending'
+  },
+  {
+    _id: ObjectId('67ee0f8be7438d92d76b1419'),
+    o_id: 4015,
+    u_id: 102,
+    p_id: 1011,
+    qty: 1,
+    status: 'Delivered'
+  }
+]
+  mydatabase> db.Users.deleteOne({u_id:101})
+{ acknowledged: true, deletedCount: 1 }
+mydatabase> db.Users.find()
+[
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140c'),
+    u_id: 102,
+    name: 'akshara',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140d'),
+    u_id: 103,
+    name: 'parvathy',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140e'),
+    u_id: 104,
+    name: 'janani',
+    city: 'chennai'
+  },
+  {
+    _id: ObjectId('67ee06b1e7438d92d76b140f'),
+    u_id: 105,
+    name: 'aalya',
+    city: 'chennai'
+  }
+]
