@@ -1,0 +1,426 @@
+//create a collection for academic details
+
+mydatabase>  db.acad_details.insertMany([{s_id:1,name:'John','age':22,course:'maths','marks':85},{s_id:2,name:'Alice','age':23,course:'physics',marks:90},{s_id:3,name:'Bob',age:24,course:'chemistry',marks:75},{s_id:4,name:'Charlie',age:22,course:'Biology',marks:88},{s_id:5,name:'David',age:25,course:'maths',marks:90}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67f09ad4475641bd2fb71236'),
+    '1': ObjectId('67f09ad4475641bd2fb71237'),
+    '2': ObjectId('67f09ad4475641bd2fb71238'),
+    '3': ObjectId('67f09ad4475641bd2fb71239'),
+    '4': ObjectId('67f09ad4475641bd2fb7123a')
+  }
+}
+mydatabase> db.acad_details.find()
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71238'),
+    s_id: 3,
+    name: 'Bob',
+    age: 24,
+    course: 'chemistry',
+    marks: 75
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71239'),
+    s_id: 4,
+    name: 'Charlie',
+    age: 22,
+    course: 'Biology',
+    marks: 88
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+# 1. find the marks greater than 23
+mydatabase> db.acad_details.find({marks:{$gt:23}})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71238'),
+    s_id: 3,
+    name: 'Bob',
+    age: 24,
+    course: 'chemistry',
+    marks: 75
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71239'),
+    s_id: 4,
+    name: 'Charlie',
+    age: 22,
+    course: 'Biology',
+    marks: 88
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+# find the age greater than 23
+mydatabase> db.acad_details.find({age:{$gt:23}})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71238'),
+    s_id: 3,
+    name: 'Bob',
+    age: 24,
+    course: 'chemistry',
+    marks: 75
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+  #3. find the students who have enrolled for maths alone
+  mydatabase> db.acad_details.find({course:{$eq:'maths'}})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+         (OR)
+  
+mydatabase> db.acad_details.find({course:'maths'})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+// above 80 marks
+  mydatabase> db.acad_details.find({marks:{$gte:80}})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71239'),
+    s_id: 4,
+    name: 'Charlie',
+    age: 22,
+    course: 'Biology',
+    marks: 88
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+  // find alice 
+  mydatabase> db.acad_details.find({name:'Alice'})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  }
+]
+
+  // change bob marks to 80
+  mydatabase> db.acad_details.find({name:'Alice'})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  }
+]
+mydatabase> db.acad_details.updateOne({name:'Bob'},{$set:{marks:80}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydatabase> db.acad_details.find()
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71238'),
+    s_id: 3,
+    name: 'Bob',
+    age: 24,
+    course: 'chemistry',
+    marks: 80
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71239'),
+    s_id: 4,
+    name: 'Charlie',
+    age: 22,
+    course: 'Biology',
+    marks: 88
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+  //find the person with course maths or physics 
+  # we can use (or) or (in)
+  mydatabase> db.acad_details.find({$or:[{course:'maths'},{course:'physics'}]})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+
+  -----------or--------------
+
+
+  mydatabase> db.acad_details.find({course:{$in:['maths','physics']}})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+  #find the person with highest mark in maths
+
+  find-->sort--> limit
+
+  mydatabase> db.acad_details.find({course:'maths'}).sort({marks:-1}).limit(1)
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'maths',
+    marks: 90
+  }
+]
+
+  //update david course to physics
+  mydatabase> db.acad_details.updateOne({name:'David'},{$set:{course:'physics'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydatabase> db.acad_details.find()
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71238'),
+    s_id: 3,
+    name: 'Bob',
+    age: 24,
+    course: 'chemistry',
+    marks: 80
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'physics',
+    marks: 90
+  }
+]
+  // marks gte 75 lte90 and course maths or physics
+  mydatabase> db.acad_details.find({$and:[{course:{$in:['maths','physics']}},{marks:{$gte:75,$lte:90}}]})
+[
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71236'),
+    s_id: 1,
+    name: 'John',
+    age: 22,
+    course: 'maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb71237'),
+    s_id: 2,
+    name: 'Alice',
+    age: 23,
+    course: 'physics',
+    marks: 90
+  },
+  {
+    _id: ObjectId('67f09ad4475641bd2fb7123a'),
+    s_id: 5,
+    name: 'David',
+    age: 25,
+    course: 'physics',
+    marks: 90
+  }
+]
