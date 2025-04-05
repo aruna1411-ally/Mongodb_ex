@@ -1,0 +1,161 @@
+#ecommerce data
+
+mydatabase>  db.products.insertMany([{p_id:1,p_name:'laptop',category:'electronics',price:1000,stock:50},{p_id:2,name:'smartphone',category:'electronics',price:700,stock:50},{p_id:3,name:'T-shirt',category:'clothing',price:20,stock:200},{p_id:4,name:'washing machine',category:'home appliances',price:500,stock:30},{p_id:5,name:'headphones',category:'electronics',price:150,stock:150},{p_id:6,name:'blender',category:'home appliances',price:80,stock:80},{p_id:7,name:'jeans',category:'clothing',price:40,stock:150},{p_id:8,p_name:'microwave oven',category:'home appliances',price:120,stock:60}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67f0b920475641bd2fb7123b'),
+    '1': ObjectId('67f0b920475641bd2fb7123c'),
+    '2': ObjectId('67f0b920475641bd2fb7123d'),
+    '3': ObjectId('67f0b920475641bd2fb7123e'),
+    '4': ObjectId('67f0b920475641bd2fb7123f'),
+    '5': ObjectId('67f0b920475641bd2fb71240'),
+    '6': ObjectId('67f0b920475641bd2fb71241'),
+    '7': ObjectId('67f0b920475641bd2fb71242')
+  }
+}
+mydatabase> db.products.find()
+[
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123b'),
+    p_id: 1,
+    p_name: 'laptop',
+    category: 'electronics',
+    price: 1000,
+    stock: 50
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123c'),
+    p_id: 2,
+    name: 'smartphone',
+    category: 'electronics',
+    price: 700,
+    stock: 50
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123d'),
+    p_id: 3,
+    name: 'T-shirt',
+    category: 'clothing',
+    price: 20,
+    stock: 200
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123e'),
+    p_id: 4,
+    name: 'washing machine',
+    category: 'home appliances',
+    price: 500,
+    stock: 30
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123f'),
+    p_id: 5,
+    name: 'headphones',
+    category: 'electronics',
+    price: 150,
+    stock: 150
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71240'),
+    p_id: 6,
+    name: 'blender',
+    category: 'home appliances',
+    price: 80,
+    stock: 80
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71241'),
+    p_id: 7,
+    name: 'jeans',
+    category: 'clothing',
+    price: 40,
+    stock: 150
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71242'),
+    p_id: 8,
+    p_name: 'microwave oven',
+    category: 'home appliances',
+    price: 120,
+    stock: 60
+  }
+]
+
+// update the products in electronic category by 10% if their stock is > 100
+mydatabase> db.products.updateMany({ category: 'electronics', stock: { $gte: 100 } }, { $mul: { price: 1.10 } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+mydatabase> db.products.find()
+[
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123b'),
+    p_id: 1,
+    p_name: 'laptop',
+    category: 'electronics',
+    price: 1000,
+    stock: 50
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123c'),
+    p_id: 2,
+    name: 'smartphone',
+    category: 'electronics',
+    price: 700,
+    stock: 50
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123d'),
+    p_id: 3,
+    name: 'T-shirt',
+    category: 'clothing',
+    price: 20,
+    stock: 200
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123e'),
+    p_id: 4,
+    name: 'washing machine',
+    category: 'home appliances',
+    price: 500,
+    stock: 30
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb7123f'),
+    p_id: 5,
+    name: 'headphones',
+    category: 'electronics',
+    price: 165,
+    stock: 150
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71240'),
+    p_id: 6,
+    name: 'blender',
+    category: 'home appliances',
+    price: 80,
+    stock: 80
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71241'),
+    p_id: 7,
+    name: 'jeans',
+    category: 'clothing',
+    price: 40,
+    stock: 150
+  },
+  {
+    _id: ObjectId('67f0b920475641bd2fb71242'),
+    p_id: 8,
+    p_name: 'microwave oven',
+    category: 'home appliances',
+    price: 120,
+    stock: 60
+  }
+]
+
